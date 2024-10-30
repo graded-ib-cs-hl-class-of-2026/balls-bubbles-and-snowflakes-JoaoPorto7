@@ -43,6 +43,7 @@ class Ball {
         this.y = y;
         this.xSpeed = xspeed;
         this.ySpeed = yspeed;
+
     }
 
     // Accessors (getters) go here
@@ -91,6 +92,12 @@ class Ball {
         if (y > s.height - radius || y < radius) {
             ySpeed = -ySpeed;
         }
+
     }
 
-}
+    
+
+   
+    }
+
+
