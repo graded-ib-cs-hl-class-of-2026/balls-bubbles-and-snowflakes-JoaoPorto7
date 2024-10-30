@@ -24,7 +24,7 @@ class Snowflake {
 
 
 
-
+/*snowflake constructor */
     public Snowflake(Sketch sketch, float radius, float x, float y, float xspeed, float yspeed) {
         this.s = sketch;
         this.radius = radius;

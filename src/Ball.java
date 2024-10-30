@@ -84,6 +84,12 @@ class Ball {
      * Moves the ball so that the next time it draws it will be in a different place
      */
     public void move() {
+
+
+        /* For this code I uesed logic and hel from mr Griswold */
+        double distanceToMouse = Sketch.dist(x, y, s.mouseX, s.mouseY);
+/*this if statements says that when the distance to mouse is greater then the radius the code for the balls to move doen't run so they stop */
+    if(distanceToMouse > radius){
         x = x + xSpeed;
         y = y + ySpeed;
         if (x > s.width - radius || x < radius) {
@@ -92,12 +98,14 @@ class Ball {
         if (y > s.height - radius || y < radius) {
             ySpeed = -ySpeed;
         }
-
+    
     }
 
+        
+        
     
 
    
     }
-
+}
 

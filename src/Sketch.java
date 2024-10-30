@@ -1,6 +1,6 @@
 import processing.core.PApplet;
 
-/*This code allows me to load a image from the processing folder  */
+/*This code allows me to load a image from the processing folder */
 /*https://hub.jmonkeyengine.org/t/how-to-set-a-background-texture/22996, https://www.youtube.com/watch?v=tHNWIWxRDDA */
 import processing.core.PImage;
 
