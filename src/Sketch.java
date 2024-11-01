@@ -1,6 +1,6 @@
 import processing.core.PApplet;
 
-/*This code allows me to load a image from the processing folder */
+/*This code allows me to load a image from the processing */
 /*https://hub.jmonkeyengine.org/t/how-to-set-a-background-texture/22996, https://www.youtube.com/watch?v=tHNWIWxRDDA */
 import processing.core.PImage;
 
@@ -73,21 +73,35 @@ public class Sketch extends PApplet {
 
         /* This finally aplies the background image before every new frame */
         background(backgroundTexture);
-/*        background(180, 180, 255); */
+
  
 /*this draws the balls and then moves it according to the speeds previously defined */
         ball1.draw();
         ball1.move();
+        ball1.handleCollision(ball2);
+        ball1.handleCollision(ball3);
+        ball1.handleCollision(ball4);
 
         ball2.draw();
         ball2.move();
+        ball2.handleCollision(ball1);
+        ball2.handleCollision(ball3);
+        ball2.handleCollision(ball4);
 
         
         ball3.draw();
         ball3.move();
+        ball3.handleCollision(ball2);
+        ball3.handleCollision(ball1);
+        ball3.handleCollision(ball4);
 
         ball4.draw();
         ball4.move();
+        ball4.handleCollision(ball2);
+        ball4.handleCollision(ball3);
+        ball4.handleCollision(ball1);
+
+
 
         bub1.draw();
         bub1.move();
@@ -113,7 +127,18 @@ public class Sketch extends PApplet {
         sf4.draw();
         sf4.move();
 
+    //I looked at Felipes code and Mr Griswold helped me with this however I don't quite understand it but it does what I need it to do 
+        if (keyPressed && key == 'r') { 
+        bub1.reset();
+        bub2.reset();
+        bub3.reset();
+        bub4.reset();
     }
+        
+    
+    }
+
+
 
     /** All processing sketches have to use this main method. Don't touch this! */
     public static void main(String[] args) {
