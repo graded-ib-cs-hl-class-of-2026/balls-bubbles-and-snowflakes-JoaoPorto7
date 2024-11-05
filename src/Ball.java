@@ -43,6 +43,7 @@ class Ball {
         this.y = y;
         this.xSpeed = xspeed;
         this.ySpeed = yspeed;
+
     }
 
     // Accessors (getters) go here
@@ -83,14 +84,52 @@ class Ball {
      * Moves the ball so that the next time it draws it will be in a different place
      */
     public void move() {
-        x = x + xSpeed;
-        y = y + ySpeed;
-        if (x > s.width - radius || x < radius) {
-            xSpeed = -xSpeed;
+
+        /* For this code I uesed logic and hel from mr Griswold */
+        double distanceToMouse = Sketch.dist(x, y, s.mouseX, s.mouseY);
+        /*
+         * this if statements says that when the distance to mouse is greater then the
+         * radius the code for the balls to move doen't run so they stop
+         */
+        if (distanceToMouse > radius) {
+            x = x + xSpeed;
+            y = y + ySpeed;
+            if (x > s.width - radius || x < radius) {
+                xSpeed = -xSpeed;
+            }
+            if (y > s.height - radius || y < radius) {
+                ySpeed = -ySpeed;
+            }
         }
-        if (y > s.height - radius || y < radius) {
-            ySpeed = -ySpeed;
-        }
+
     }
 
+    public boolean colliding(Ball secondBall) {
+        /*this code sets a value to the distance and then checks if the ball is colliding or not */
+        /*mr.Griswold teached me how to use the sketch.dist code in the code above */
+        double distance = Sketch.dist(this.x, this.y, secondBall.x, secondBall.y);
+        return distance < (this.radius + secondBall.radius);
+    }
+
+    /*I created this method to handle the collision */
+    /*It sets the original speed to a temporary varible so it can be restored later
+     * I belive I learnt this in class but I don't remember exactly when I just know it does what I need it to do
+     */
+    public void handleCollision(Ball secondBall) {
+
+        if (colliding(secondBall)) {
+
+//over here I wanted to set these to temp values because I wanted to change the ball speeds as they transfered per collision so in order the original value is not lost I created thes temp values
+            float tXSpeed = this.xSpeed;
+            float tYSpeed = this.ySpeed;
+
+//this just sets the ball speed to the other ball speed
+            this.xSpeed = secondBall.xSpeed;
+            this.ySpeed = secondBall.ySpeed;
+//this sets the other ball speed to the first ball speed
+            secondBall.xSpeed = tXSpeed;
+            secondBall.ySpeed = tYSpeed;
+        }
+
+    }
 }
